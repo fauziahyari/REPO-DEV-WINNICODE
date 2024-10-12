@@ -1,0 +1,73 @@
+@extends('frontend.beranda.layouts.app')
+
+@section('container')
+@php
+$title = 'Berita - PT . Winnicode Garuda Teknologi';
+@endphp
+<section class="background-radial-gradient overflow-hidden">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5" style="font-family: Raleway;">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="card">
+                <div class="card-body py-5 px-md-5">
+                    <Section class="miri-ui-kit-section team-members-section">
+                        <div class="text-center mb-8">
+                            <h1>Berita</h1>
+                        </div>
+                        <div class="container py-8">
+                            <div class="row">
+                                @foreach ($berita as $data)
+                                <div class="col-md-4">
+                                    <div class="team-card card border-0 raise-on-hover">
+                                        <div class="card border-4">
+                                            <div class="card-body">
+                                                <a href="{{ route('frontend.berita.detail', $data->slug) }}">
+                                                    @if($data->gambar)
+                                                    <img src="{{ asset('images/' . $data->gambar) }}" alt="{{ $data->judul }}" style="width: 200px; height: 200px;" class="card-img-top">
+                                                    @else
+                                                    <img src="{{ asset('IMG/logo.png') }}" alt="Gambar tidak tersedia" style="width: 100px; height: 100px;">
+                                                    @endif
+                                                </a>
+                                                <div class="card-body px-0">
+                                                    <h5 class="card-title mb-0">{{ $data->judul}}</h5>
+                                                    <p class=" font-weight-medium designation btn btn-primary">Penulis</p>
+                                                    <p class=" font-weight-medium designation btn btn-success">{{ $data->penulis}}</p>
+                                                    <p>
+                                                        @php
+                                                        $words = explode(' ', $data->deskripsi);
+                                                        if (count($words) > 5) {
+                                                        $truncated = implode(' ', array_slice($words, 0, 5));
+                                                        echo $truncated;
+                                                        } else {
+                                                        echo $data->deskripsi;
+                                                        }
+                                                        @endphp
+                                                    </p>
+                                                    @if(count($words) > 5)
+                                                    <a href="/berita/{{ $data->slug }}" class="btn btn-primary">Selengkapnya</a>
+                                                    <a href="#" class="btn btn-danger">REPORT</a>
+                                                    @endif
+                                                    <p class="social-links">
+                                                        <a href="#" class="icon-fb"><i class="mdi mdi-facebook-box"></i></a>
+                                                        <a href="#" class="icon-twitter"><i class="mdi mdi-twitter-box"></i></a>
+                                                        <a href="#" class="icon-insta"><i class="mdi mdi-instagram"></i></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <!-- Link pagination -->
+                                <div>
+                                    {{ $berita->links('vendor.pagination.bootstrap-4') }}
+                                </div>
+                            </div>
+                        </div>
+                    </Section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@include('frontend.beranda.layouts.style')
+@endsection

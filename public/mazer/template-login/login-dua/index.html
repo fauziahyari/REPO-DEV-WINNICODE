@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="form-wrapper">
+        <h2 class="form-wrapper__title">MASUK</h2>
+        <form action="{{ route('login') }}" method="post" id="mainForm" autocomplete="off">
+            <label for="userName">Email</label>
+            <div class="user-wrapper"><input type="text" id="email" placeholder="Silahkan Masukkan Username" required></div>
+            <label for="password">Sandi</label>
+            <div class="password-wrapper"><input type="password" id="password" placeholder="Silahkan Masukkan Sandi" required></div>
+            <a href="#" class="mainForm__forgotBtn">Lupa Sandi?</a>
+            <button type="submit" id="mainForm__subBtn">Login</button>
+        </form>
+    <!-- ----Font Awesome Kit JS---- -->
+    <script src="https://kit.fontawesome.com/da18e518c5.js"></script>
+</body>
+</html>
