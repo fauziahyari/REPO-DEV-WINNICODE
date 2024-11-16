@@ -29,7 +29,7 @@
                                     <a href="{{ route('berita.edit', $data->id ) }}" class="btn btn-success">Edit</a>
                                     <form action="{{ route('berita.destroy', $data->id )}}" method="post">
                                         @csrf
-                                        @method('delete')
+                                        @method('DELETE')
                                         <button class="btn btn-danger">Hapus</button>
                                     </form>
                                 </div>

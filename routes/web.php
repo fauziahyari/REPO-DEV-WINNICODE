@@ -27,7 +27,7 @@ Route::get('/beranda', [App\Http\Controllers\Frontend\Beranda\LandingPageControl
 //bootcamp
 Route::get('/bootcamps', [App\Http\Controllers\Frontend\Beranda\LandingPageController::class, 'bootcamps'])->name('bootcamps.index');
 //detai bootcamp
-Route::get('/bootcamps/{id}', [App\Http\Controllers\Frontend\Beranda\LandingPageController::class, 'show'])->name('bootcamps.show');
+Route::get('/bootcamps/{id}', [App\Http\Controllers\Frontend\Beranda\LandingPageController::class, 'detail'])->name('bootcamps.detail');
 //informasi
 Route::get('/informasi', [App\Http\Controllers\Frontend\Beranda\LandingPageController::class, 'informasi'])->name('informasi.index');
 //tentang

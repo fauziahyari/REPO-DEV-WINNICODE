@@ -16,12 +16,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penulis</label>
-                            <select name="penulis" class="form-control">
-                                <option value="" disabled>Silahkan Pilih</option>
-                                @foreach($penulis as $data)
-                                <option value="{{ $data->penulis }}" {{ $berita->penulis == $data->penulis ? 'selected' : '' }}>{{ $data->penulis }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="penulis" value="{{ $berita->penulis }}" class="form-control" required>
                         </div>
                     </div>
                 </div>

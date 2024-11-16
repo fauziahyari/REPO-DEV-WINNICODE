@@ -85,29 +85,26 @@ $title = 'Bootcamps - PT . Winnicode Garuda Teknologi';
     }
 </style>
 <section class="background-radial-gradient overflow-hidden">
-<div class="container">
-    <h1 class="text-center my-5" style="color: white; font-weight: bold;">DAFTAR BOOTCAMP</h1>
-    <div class="row">
-        @foreach ($bootcamps as $bootcamp)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm" style="border-radius: 10px; overflow: hidden;">
-                    <!-- Gambar menyesuaikan ukuran kotak -->
-                    <img src="{{ asset('images/bootcamps/' . $bootcamp->url_gambar) }}" class="card-img-top" alt="Bootcamp Image" style="object-fit: cover; width: 100%; height: 200px;">
-                    <div class="card-body" style="background-color: #fff;">
-                        <h5 class="card-title" style="font-size: 18px; font-weight: bold;">{{ $bootcamp->name }}</h5>
-                        <p class="card-text" style="font-size: 14px; color: #333;">
-                            {{ Str::limit($bootcamp->description, 100) }}
-                        </p>
-                        <p class="card-text" style="font-size: 16px; font-weight: bold; color: #333;">
-                            <strong>Price:</strong> Rp {{ number_format($bootcamp->price, 2) }}
-                        </p>
-                    </div>
-                    <div class="card-footer bg-transparent border-0">
-                        <a href="{{ route('bootcamps.detail', $bootcamp->id) }}" class="btn btn-primary w-100" style="font-size: 14px;">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+<div class="container my-5">
+<div class="container my-5">
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 d-flex justify-content-center align-items-center" style="background-color: white; color: white; border-radius: 10px; padding: 20px; max-width: 320px; height: 100%; display: flex;">
+            <img src="{{ asset('images/bootcamps/' . $bootcamps->url_gambar) }}" class="img-fluid" alt="Bootcamp Image" style="max-width: 300px;">
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-uppercase"style="color: white; font-weight: bold;">{{ strtoupper($bootcamps->name) }} : BOOTCAMP</h3>
+            <p class="fs-4 fw-bold text-primary">Rp {{ number_format($bootcamps->price, 0, ',', '.') }}</p>
+        </div>
+    </div>
+
+    <div class="p-4">
+        <h4 class="text-primary">Deskripsi Bootcamp</h4>
+        <p style="color: white; font-weight: bold;">{{ $bootcamps->description }}</p>
+    </div>
+
+    <div class="text-center my-5">
+        <a href="#" class="btn btn-primary btn-lg">DAFTAR SEKARANG</a>
     </div>
 </div>
+
 @endsection

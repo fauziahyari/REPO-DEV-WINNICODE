@@ -6,6 +6,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>No</th>
                 <th>Nama</th>
                 <th>Gambar</th>
                 <th>Deskripsi</th>
@@ -16,28 +17,33 @@
         <tbody>
             @if($bootcamps->isEmpty())
                 <tr>
-                    <td colspan="5" class="text-center">Tidak ada bootcamp yang terdaftar.</td>
+                    <td colspan="6" class="text-center">Tidak ada bootcamp yang terdaftar.</td>
                 </tr>
             @else
                 @foreach($bootcamps as $data)
                     <tr>
-                    <td>{{ $loop->iteration }}</td>
-                        <td>{{ $bootcamps->name }}</td>
-                        <td>{{ $bootcamps->description }}</td>
-                        <td>{{ $bootcamps->price }}</td>
-                        <td> @if($bootcamp->url_gambar)
-                            <img src="{{ asset('storage/' . $bootcamps->url_gambar) }}" alt="Gambar Bootcamp" width="100">
-                            @else
-                            Tidak ada gambar
-                            @endif
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->name }}</td>
                         <td>
-                            <a href="{{ route('bootcamps.edit', $bootcamps->id) }}" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('bootcamps.destroy', $bootcamps->id ) }}" method="post"style="display:inline-block;">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus bootcamp ini?')">Hapus</button>
-                                </form>
-                            </div>
+                            @if($data->url_gambar)
+                                <img src="{{ asset('images/bootcamps/' . $data->url_gambar) }}" alt="Gambar Bootcamp" width="100">
+                            @else
+                                Tidak ada gambar
+                            @endif
+                        </td>
+                        <td>{{ $data->description }}</td>
+                        <td>Rp {{ number_format($data->price, 0, ',', '.') }}</td>
+                        <td>
+                            <a href="{{ route('bootcamps.edit', $data->id) }}" class="btn btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('bootcamps.destroy', $data->id)}}" method="post" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus bootcamp ini?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

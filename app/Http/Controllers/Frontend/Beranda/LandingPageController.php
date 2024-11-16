@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Beranda;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Magang\Peserta;
+use App\Models\Bootcamps\Bootcamps;
 
 class LandingPageController extends Controller
 {
@@ -21,15 +22,16 @@ class LandingPageController extends Controller
     }
     public function bootcamps()
     {
-        $bootcamps=collect([]);
+        $bootcamps=Bootcamps::query()->get();
         return view('frontend.beranda.bootcamps.index',[
             'active' => 'index',"bootcamps"=>$bootcamps
         ]);
     }
-    public function show($id)
+    public function detail($id)
     {
-        return view('frontend.beranda.bootcamps.show',[
-            'active' => 'show'
+        $bootcamps = Bootcamps::findOrFail($id);
+        return view('frontend.beranda.bootcamps.detail',[
+            'active' => 'detail',"bootcamps"=>$bootcamps
         ]);
     }
 
